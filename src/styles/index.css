@@ -1,0 +1,118 @@
+@import 'tailwindcss';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/jetbrains-mono/700.css';
+
+/* ---- Semantic design tokens ---- */
+/* Dark is the default palette; .light overrides for the light variant. */
+:root {
+  --color-canvas: #0a0e17;
+  --color-canvas-raised: #0d1320;
+  --color-surface: #121926;
+  --color-surface-raised: #171f2e;
+  --color-border: #232c3d;
+  --color-border-strong: #313d54;
+
+  --color-text: #e9edf5;
+  --color-text-muted: #8996ac;
+  --color-text-faint: #5c6780;
+
+  --color-accent: #38bdf8;
+  --color-accent-strong: #7dd3fc;
+  --color-accent-contrast: #04141c;
+
+  --color-success: #2dd4bf;
+  --color-warning: #fbbf24;
+  --color-danger: #fb7185;
+
+  --color-glow: 56 189 248;
+}
+
+:root.light {
+  --color-canvas: #f4f7fb;
+  --color-canvas-raised: #eef2f8;
+  --color-surface: #ffffff;
+  --color-surface-raised: #ffffff;
+  --color-border: #dce3ee;
+  --color-border-strong: #c3cee0;
+
+  --color-text: #101826;
+  --color-text-muted: #5b6b82;
+  --color-text-faint: #8592a6;
+
+  --color-accent: #0284c7;
+  --color-accent-strong: #0369a1;
+  --color-accent-contrast: #ffffff;
+
+  --color-success: #0d9488;
+  --color-warning: #b45309;
+  --color-danger: #e11d48;
+
+  --color-glow: 2 132 199;
+}
+
+@theme inline {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Courier New', monospace;
+
+  --color-canvas: var(--color-canvas);
+  --color-canvas-raised: var(--color-canvas-raised);
+  --color-surface: var(--color-surface);
+  --color-surface-raised: var(--color-surface-raised);
+  --color-border: var(--color-border);
+  --color-border-strong: var(--color-border-strong);
+
+  --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
+  --color-text-faint: var(--color-text-faint);
+
+  --color-accent: var(--color-accent);
+  --color-accent-strong: var(--color-accent-strong);
+  --color-accent-contrast: var(--color-accent-contrast);
+
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-danger: var(--color-danger);
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior: none;
+  }
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-accent) 35%, transparent);
+  }
+  * {
+    border-color: var(--color-border);
+  }
+}
+
+@layer utilities {
+  .shadow-glow {
+    box-shadow: 0 0 0 1px rgb(var(--color-glow) / 0.25), 0 0 24px -6px rgb(var(--color-glow) / 0.55);
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border-strong) transparent;
+  }
+}
+
+/* ligatures off for pseudocode legibility: <-, <=, <> must stay literal */
+.cm-editor,
+.cs-console {
+  font-variant-ligatures: none;
+  font-feature-settings: 'liga' 0, 'calt' 0;
+}
